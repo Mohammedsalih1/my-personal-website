@@ -36,8 +36,10 @@ import right_arrow from './right-arrow.png';
 import send_icon from './send-icon.png';
 import right_arrow_bold from './right-arrow-bold.png';
 import right_arrow_bold_dark from './right-arrow-bold-dark.png';
+import github_icon from './github-mark.png';
 
 export const assets = {
+    github_icon,
     user_image,
     code_icon,
     code_icon_dark,
@@ -80,25 +82,31 @@ export const assets = {
 
 export const workData = [
     {
-        title: 'Frontend project',
-        description: 'Web Design',
+        title: 'Hoobank',
+        description: 'payment method website',
         bgImage: '/work-1.png',
+        projectUrl: "https://project01-hoobank.netlify.app/",
+        gitHubUrl: "https://github.com/Mohammedsalih1/HooBank_V2",
     },
     {
-        title: 'Geo based app',
-        description: 'Mobile App',
+        title: 'Brainwave',
+        description: 'modern landing page designed to showcase the power of AI',
         bgImage: '/work-2.png',
+        projectUrl: "https://project02-brainwave.netlify.app/",
+        gitHubUrl: "https://github.com/Mohammedsalih1/Brainwave",
     },
     {
-        title: 'Photography site',
-        description: 'Web Design',
+        title: 'Bookmark',
+        description: 'clean and simple interface to organize your favourite websites',
         bgImage: '/work-3.png',
+        projectUrl: "https://mohammedsalih1.github.io/bookmark/",
+        gitHubUrl: "https://github.com/Mohammedsalih1/bookmark",
     },
-    {
-        title: 'UI/UX designing',
-        description: 'UI/UX Design',
-        bgImage: '/work-4.png',
-    },
+    // {
+    //     title: 'UI/UX designing',
+    //     description: 'UI/UX Design',
+    //     bgImage: '/work-4.png',
+    // },
 ]
 
 export const serviceData = [

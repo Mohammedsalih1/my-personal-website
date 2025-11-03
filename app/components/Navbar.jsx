@@ -2,7 +2,7 @@ import { assets } from '@/assets/assets'
 import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
 
-const Navbar = () => {
+const Navbar = ({IsDarkMode, setIsDarkMode}) => {
 
     const [isScroll, setScroll] = useState(false);
 
@@ -29,7 +29,7 @@ const Navbar = () => {
 
     return (
         <>
-            <div className='fixed top-0 right-0 w-11/12 -z-10 translate-y-[80%] '>
+            <div className='fixed top-0 right-0 w-11/12 -z-10 translate-y-[80%]'>
                 <Image src={assets.header_bg_color} alt='header background' className='w-full' />
             </div>
             <nav className={`w-full fixed px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between z-50 ${isScroll ? "bg-white bg-opacity-50 backdrop-blur-lg shadow-sm" : ""}`}>
@@ -45,9 +45,9 @@ const Navbar = () => {
                 </ul>
 
                 <div className='flex items-center gap-4'>
-                    <button>
-                        <Image src={assets.moon_icon} className='w-6' alt=''/>
-                    </button>
+                    {/* <button onClick={() => setIsDarkMode(prev => !prev)}>
+                        <Image src={IsDarkMode ? assets.sun_icon : assets.moon_icon } className='w-6 cursor-pointer' alt=''/>
+                    </button> */}
                     <a className='hidden lg:flex items-center gap-3 px-10 border border-gray-500 rounded-full ml-4 py-2.5 ovo' href="#contact">Contact <Image src={assets.arrow_icon} className='w-3' alt='arrow'/></a>
                     
                     <button className='block md:hidden ml-3 cursor-pointer' onClick={openMobileMenu}>

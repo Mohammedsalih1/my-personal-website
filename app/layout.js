@@ -24,3 +24,4 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+// dark:bg-[#11001f] dark:text-white
