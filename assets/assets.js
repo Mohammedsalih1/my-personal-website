@@ -37,8 +37,10 @@ import send_icon from './send-icon.png';
 import right_arrow_bold from './right-arrow-bold.png';
 import right_arrow_bold_dark from './right-arrow-bold-dark.png';
 import github_icon from './github-mark.png';
+import html5 from './html-stack.png';
 
 export const assets = {
+    html5,
     github_icon,
     user_image,
     code_icon,
@@ -79,6 +81,63 @@ export const assets = {
     right_arrow_bold,
     right_arrow_bold_dark
 };
+export  const tech = [
+    { name: "HTML", img: assets.html5 },
+    { name: "CSS", img: assets.html5 },
+    { name: "JavaScript", img: assets.html5 },
+    { name: "TailwindCSS", img: assets.html5 },
+    { name: "React", img: assets.html5 },
+    { name: "Next.js", img: assets.html5 },
+    { name: "TypeScript", img: assets.html5},
+    { name: "Git", img: assets.html5},
+    { name: "Figma", img: assets.html5 },
+  ];
+export  const projects = [
+    {
+      title: "Brainwave",
+      description:
+        "A sleek AI-powered chat interface designed to boost productivity through fast, intelligent conversations. This project showcases an intuitive UI, smooth interactions, and a modern design inspired by next-generation AI tools..",
+      image: '/project1.jpg', // replace with your image
+      tech: ["React", "Tailwind"],
+      features: [
+        "smooth UI components",
+        "Fully responsive UI",
+        "Reusable components & clean structure",
+      ],
+      live: "https://project02-brainwave.netlify.app/",
+      github: "https://github.com/Mohammedsalih1/Brainwave",
+    },
+    {
+      title: "Hoobank",
+      description:
+        "A modern, responsive fintech landing page showcasing secure payment methods and expert guidance.",
+      image: "/project2.png",
+      tech: ["React", "Tailwind"],
+      features: [
+        "clear structure",
+        "Smooth hover animations",
+        "Optimized UI performance",
+        "state management",
+      ],
+      live: "https://project01-hoobank.netlify.app/",
+      github: "https://github.com/Mohammedsalih1/bookmark",
+    },
+    {
+      title: "online store",
+      description:
+        "A modern online store offering fast and secure phone-unlocking services. The site features a simple, user-friendly interface that guides customers through selecting their device and unlock method",
+      image: "/project3.png",
+      tech: ["Next.js", 'Tailwind'],
+      features: [
+        "Product filtering & search",
+        "Drag & drop UI",
+        "Custom component architecture",
+      ],
+      live: "https://um-unlocker.vercel.app/",
+      github: "https://github.com/Mohammedsalih1/Umunlocker",
+    },
+  ];
+
 
 export const workData = [
     {

@@ -1,73 +1,137 @@
-import { assets } from '@/assets/assets'
-import Image from 'next/image'
-import React, { useEffect, useRef, useState } from 'react'
+"use client";
 
-const Navbar = ({IsDarkMode, setIsDarkMode}) => {
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
+import Btn2 from "../Reuse/Btn2";
 
-    const [isScroll, setScroll] = useState(false);
+const navLinks = [
+  { name: "Home", href: "#home" },
+  { name: "About", href: "#about" },
+  { name: "Projects", href: "#projects" },
+  { name: "Contact", href: "#contact" },
+];
 
-    const mobileMenuRef = useRef();
-    const openMobileMenu = () => {
-        // mobileMenuRef.current.style.right = "0";
-        mobileMenuRef.current.style.transform = "translateX(-16rem)";
-    }
-    const closeMobileMenu = () => {
-        // mobileMenuRef.current.style.right = "-16rem";
-        mobileMenuRef.current.style.transform = "translateX(16rem)";
-    }
+export default function Navbar() {
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-    useEffect(() => {
-        window.addEventListener('scroll', () => {
-            if (scrollY > 50) {
-                setScroll(true)
-            } else {
-                setScroll(false)
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
 
-            }
-        })
-    }, [])
+    window.addEventListener("scroll", handleScroll);
 
-    return (
-        <>
-            <div className='fixed top-0 right-0 w-11/12 -z-10 translate-y-[80%]'>
-                <Image src={assets.header_bg_color} alt='header background' className='w-full' />
-            </div>
-            <nav className={`w-full fixed px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between z-50 ${isScroll ? "bg-white bg-opacity-50 backdrop-blur-lg shadow-sm" : ""}`}>
-                <a href="#top">
-                    <Image src={assets.my_logo} className='w-28 cursor-pointer mr-14' alt='my name logo'/>
-                </a>
-                <ul className={`hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 ${isScroll ? "" : " bg-white shadow-sm btg-opacity-50" }`}>
-                    <li><a className='ovo' href="#top">Home</a></li>
-                    <li><a className='ovo' href="#about">About me</a></li>
-                    <li><a className='ovo' href="#services">Services</a></li>
-                    <li><a className='ovo' href="#work">My work</a></li>
-                    <li><a className='ovo' href="#contact">Contact Me</a></li>
-                </ul>
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-                <div className='flex items-center gap-4'>
-                    {/* <button onClick={() => setIsDarkMode(prev => !prev)}>
-                        <Image src={IsDarkMode ? assets.sun_icon : assets.moon_icon } className='w-6 cursor-pointer' alt=''/>
-                    </button> */}
-                    <a className='hidden lg:flex items-center gap-3 px-10 border border-gray-500 rounded-full ml-4 py-2.5 ovo' href="#contact">Contact <Image src={assets.arrow_icon} className='w-3' alt='arrow'/></a>
-                    
-                    <button className='block md:hidden ml-3 cursor-pointer' onClick={openMobileMenu}>
-                        <Image src={assets.menu_black} className='w-6' alt=''/>
-                    </button>
-                </div>
-                {/* mobite menu  */}
-                <ul ref={mobileMenuRef} className='flex md:hidden flex-col gap-4 py-20 px-10 fixed -right-64 top-0 bottom-0 w-64 z-50 h-screen bg-rose-50 transition duration-500'>
-                    <div className='absolute right-6 top-6 ' onClick={closeMobileMenu}>
-                        <Image src={assets.close_black} alt='' className='w-5 cursor-pointer' />
-                    </div>
-                    <li><a className='ovo' onClick={closeMobileMenu} href="#top">Home</a></li>
-                    <li><a className='ovo' onClick={closeMobileMenu} href="#about">About me</a></li>
-                    <li><a className='ovo' onClick={closeMobileMenu} href="#services">Services</a></li>
-                    <li><a className='ovo' onClick={closeMobileMenu} href="#work">My work</a></li>
-                    <li><a className='ovo' onClick={closeMobileMenu} href="#contact">Contact Me</a></li>
-                </ul>
-            </nav>
-        </>
-    )
+  return (
+    <motion.nav
+      initial={{ y: -40, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className={`fixed top-0 z-50 w-full transition-all duration-300 ${
+        scrolled
+          ? "backdrop-blur-xl bg-neutral-950/70 border-b border-white/10"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+
+        {/* Logo */}
+        <Link
+          href="#home"
+          className="text-white font-semibold text-lg tracking-tight"
+        >
+          Mohamed
+          <span className="bg-gradient-to-r from-orange-300 via-pink-300 to-blue-300 bg-clip-text text-transparent">
+            .dev
+          </span>
+        </Link>
+
+        {/* Desktop Navigation */}
+        <ul className="hidden md:flex items-center gap-10">
+          {navLinks.map((link) => (
+            <li key={link.name} className="relative">
+              <Link
+                href={link.href}
+                className="group text-sm font-medium text-neutral-300 hover:text-white transition"
+              >
+                {link.name}
+
+                {/* underline animation */}
+                <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-gradient-to-r from-orange-300 via-pink-300 to-blue-300 transition-all duration-300 group-hover:w-full" />
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        {/* Right Side */}
+        <div className="flex items-center gap-4">
+
+          <div className="hidden md:block">
+            <a
+                href="#contact"
+                className="px-6 py-3 rounded-full font-medium text-black
+                bg-gradient-to-r from-orange-300 via-pink-300 to-blue-300
+                hover:-translate-y-20"
+              >
+                Get in Touch
+            </a>
+            {/* <Btn2 /> */}
+          </div>
+
+          {/* Mobile Button */}
+          <button
+            onClick={() => setOpen(!open)}
+            className="md:hidden text-white text-2xl"
+            aria-label="Toggle Menu"
+          >
+            {open ? "✕" : "☰"}
+          </button>
+
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: -15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.25 }}
+            className="md:hidden mx-6 mb-6 rounded-2xl border border-white/10 bg-neutral-950/90 backdrop-blur-xl"
+          >
+            <ul className="flex flex-col divide-y divide-white/10">
+              {navLinks.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    className="block px-6 py-4 text-neutral-200 hover:text-white transition"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+
+              <li className="p-4">
+              <a
+                  href="#contact"
+                  className="px-6 py-3 rounded-full font-medium text-black
+                  bg-gradient-to-r from-orange-300 via-pink-300 to-blue-300
+                  hover:-translate-y-20"
+                >
+                  Get in Touch
+              </a>
+                {/* <Btn2 /> */}
+              </li>
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.nav>
+  );
 }
-
-export default Navbar
